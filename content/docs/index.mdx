@@ -1,13 +1,70 @@
 ---
-title: Hello World
-description: Your first document
+title: Welcome to YABGSMS
+description: Get started using Yet Another Basic GraphQL Social Media Server
 ---
+import { Rss, Users } from 'lucide-react';
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+## Get Started!
 
-## What is Next?
+Welcome to the docs! YABGSMS is a simple GraphQL server that allows you to create, read, update, and delete posts and users. It is built using [Fumadocs](https://fumadocs.vercel.app) and [GraphQL](https://graphql.org) / [ApolloServer](https://apollographql.com).
+
+You can play around with the server using the GraphQL Client on the [Cloudflare Worker](https://yabgsms.tgca211859.workers.dev/). Some endpoints require an admin token, which is just the header `Authorization: secret` for now (just a basic placeholder for showcase purposes)
+
+The server is divided in two simple parts: Posts and Users. You can create, read, update, and delete both of them.
 
 <Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.vercel.app" />
+  <Card title="Posts" href="/docs/posts" icon={<Rss />}>
+    Posts are simple. They have an ID, an author, a title, and content. The content can be either an image or text.
+  </Card>
+  <Card title="Users" href="/docs/users" icon={<Users/>}>
+    Users are also simple. They have a username, a full name, and an ID.
+  </Card>
 </Cards>
+
+## Schema
+
+Below is the entire schema for the server. You can use this to understand how the server works, and how to interact with it.
+
+```gql
+type User {
+  id: Int!
+  username: String!
+  fullName: String!
+}
+
+type Post {
+  id: Int!
+  author: Int!
+  title: String!
+  content: PostContent!
+}
+
+type PostContent {
+  type: PostContentType!
+  data: String!
+}
+
+enum PostContentType {
+  IMAGE,
+  TEXT
+}
+
+type Query {
+  users: [User]
+  posts: [Post]
+  post(id: Int!): Post
+  user(id: Int!): User
+}
+
+type Mutation {
+  createUser(username: String!, fullName: String!): User
+  deleteUser(id: Int!): Boolean!
+  updateUserName(id: Int!, username: String!): User
+  updateUserFullName(id: Int!, fullName: String!): User
+
+  createPost(author: Int!, title: String!, contentType: PostContentType!, content: String!): Post
+  deletePost(id: Int!): Boolean!
+  updatePostTitle(id: Int!, title: String!): Post
+  updatePostContent(id: Int!, contentType: PostContentType!, content: String!): Post
+}
+```

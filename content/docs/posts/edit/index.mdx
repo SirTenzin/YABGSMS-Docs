@@ -1,0 +1,33 @@
+---
+title: Editing Posts
+description: This is how the Post editing system works.
+---
+
+## Aw Crud! (Mutating posts)
+
+The GraphQL server has several mutators (functions that change data) that allow you to edit posts. They are very simple to use and are as follows according to the schema.
+
+## Schema
+
+```gql
+type Mutation {
+	# ...
+    # User mutations omitted for brevity
+
+	createPost(
+		author: Int!
+		title: String!
+		contentType: PostContentType!
+		content: String!
+	): Post
+	deletePost(id: Int!): Boolean!
+	updatePostTitle(id: Int!, title: String!): Post
+	updatePostContent(
+		id: Int!
+		contentType: PostContentType!
+		content: String!
+	): Post
+}
+```
+
+<Callout title="Note">The full schema, ncluding the Post and PostContentType objects are viewable [here](/docs#schema).</Callout>

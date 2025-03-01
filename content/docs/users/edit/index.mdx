@@ -1,0 +1,24 @@
+---
+title: Editing Users
+description: This is how the User editing system works.
+---
+
+## Mutating users
+
+The GraphQL server has several mutators (functions that change data) that allow you to edit users. They are very simple to use and are as follows according to the schema.
+
+## Schema
+
+```gql
+type Mutation {
+	createUser(username: String!, fullName: String!): User
+	deleteUser(id: Int!): Boolean!
+	updateUserName(id: Int!, username: String!): User
+	updateUserFullName(id: Int!, fullName: String!): User
+
+	# ...
+    # Post mutations omitted for brevity
+}
+```
+
+<Callout title="Note">The full schema is viewable [here](/docs#schema).</Callout>

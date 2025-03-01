@@ -1,0 +1,52 @@
+---
+title: Editing a post's content
+description: You can edit a post's content, including overwriting its type, using an admin token and its ID
+---
+
+## Editing a post's content
+
+You can update any post's content using the following GraphQL query. This will overwrite the content type and data, for example:
+
+```json
+{
+        "id": 2,
+        "author": 1,
+        "title": "The best social media app's first image post!",
+        "content": {
+          "type": "TEXT",
+          "data": "This is the first post on this social media app with a picture. How amazing is this?"
+        }
+      }
+```
+
+will be mapped under the following query
+
+```gql
+mutation UpdatePostContent($updatePostContentId: Int!, $contentType: PostContentType!, $content: String!) {
+  updatePostContent(id: $updatePostContentId, contentType: $contentType, content: $content) {
+    id, title, author, content {
+      type, data
+    }
+  }
+}
+```
+
+onto the new post object: 
+
+```json
+{
+  "data": {
+    "updatePostContent": {
+      "id": 2,
+      "title": "The best social media app's first image post!",
+      "author": 1,
+      "content": {
+        "type": "IMAGE",
+        "data": "image.com"
+      }
+    }
+  }
+}
+```
+
+This is particularly useful when you want to change the type of content in a post, for example, from text to an image or vice versa.

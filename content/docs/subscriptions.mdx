@@ -1,0 +1,8 @@
+---
+title: Subscriptions
+description: The issue with subscriptions
+---
+
+## Cloudflare's limitations
+
+GraphQL subscriptions are a powerful feature that allows clients to subscribe to changes in the server. However, subscriptions are not supported in the current version of the API. This is due to the fact that the API is stateless and does not maintain a connection with the client. This means that the server cannot push updates to the client. It is also incompatible with the current architecture of the server, which is built on top of Cloudflare Workers. Cloudflare Workers do not support WebSockets, which are commonly used for implementing subscriptions. It would be possible to implement this with Cloudflare Durable Objects, but this would require a significant rewrite of the server. For now, the server only supports queries and mutations.

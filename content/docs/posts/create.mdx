@@ -1,0 +1,36 @@
+---
+title: Create a post
+description: Creating a post with an admin token and its ID
+---
+
+You can run the following GraphQL query to create a post:
+
+```gql
+mutation CreatePost($author: Int!, $title: String!, $contentType: PostContentType!, $content: String!) {
+  createPost(author: $author, title: $title, contentType: $contentType, content: $content) {
+    id, title, author, content {
+      type, data
+    }
+  }
+}
+```
+
+which on success will generate an object akin to:
+
+```json
+{
+  "data": {
+    "createPost": {
+      "id": 21884,
+      "title": "Hello World",
+      "author": 1,
+      "content": {
+        "type": "TEXT",
+        "data": "Hello, World!"
+      }
+    }
+  }
+}
+```
+
+<Callout title="Note">You can view how these IDs are generated at the [Identifiers](/docs/id) page</Callout>

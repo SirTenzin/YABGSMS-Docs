@@ -1,0 +1,24 @@
+---
+title: Creating, Reading, Updating and Deleting Users
+description: How to perform simple CRUD actions on the User database.
+---
+
+## User structure
+
+Users are pretty simple. They have a username and a full name, and an ID. You can create, read, update, and delete users via their unique Identifier.
+
+<Callout title="Note">You can view how these IDs are generated at the [Identifiers](/docs/id) page</Callout>
+
+## Watch out!
+
+<Callout type="warn" title="Authenticating">You must be authorized to perform these actions. You can simple use the placeholder token by setting the `Authorization` header to `secret`</Callout>
+
+## Schema: 
+
+```gql
+type User {
+    id: Int!
+    username: String!
+    fullName: String!
+}
+```

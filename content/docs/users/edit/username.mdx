@@ -1,0 +1,43 @@
+---
+title: Editing a user's username
+description: You can edit a user's username using an admin token and their ID
+---
+
+
+You can update any user's username using the following GraphQL query:
+
+```gql
+mutation UpdateUserName($updateUserNameId: Int!, $username: String!) {
+  updateUserName(id: $updateUserNameId, username: $username) {
+    id, username, fullName
+  }
+}
+```
+
+which will map
+
+```json
+{
+  "data": {
+    "updateUserName": {
+      "id": 2,
+      "username": "john_doe",
+      "fullName": "John Doe"
+    }
+  }
+}
+```
+
+to the following:
+
+```json
+{
+  "data": {
+    "updateUserName": {
+      "id": 2,
+      "username": "doe_john",
+      "fullName": "John Doe"
+    }
+  }
+}
+```

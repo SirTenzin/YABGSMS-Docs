@@ -1,0 +1,32 @@
+---
+title: Create a user
+description: You can create a new user using an admin token, along side a name and username for it.
+---
+
+You can run the following GraphQL query to create a user with the name "John Doe" and the username "john_d03":
+
+```gql
+mutation {
+  createUserSuccess: createUser(
+    username: "john_d03", 
+    fullName: "John Doe") {
+    	id
+  	}
+}
+```
+
+On success, this will return: 
+
+```json
+{
+  "data": {
+    "createUserSuccess": {
+      "id": 1234,
+      "fullName": "John Day",
+      "username": "john_d03"
+    }
+  }
+}
+```
+
+<Callout title="Note">You can view how these IDs are generated at the [Identifiers](/docs/id) page</Callout>

@@ -8,6 +8,19 @@ import {
 import { notFound } from 'next/navigation';
 import defaultMdxComponents from 'fumadocs-ui/mdx';
 
+import 'katex/dist/katex.min.css';
+import { renderToString } from 'katex';
+
+function LatexRenderer({ formula }: { formula: string }) {
+  const html = renderToString(formula, {
+    throwOnError: false,
+    displayMode: true
+  });
+  
+  return <div dangerouslySetInnerHTML={{ __html: html }} />;
+}
+
+
 export default async function Page(props: {
   params: Promise<{ slug?: string[] }>;
 }) {
@@ -22,7 +35,9 @@ export default async function Page(props: {
       <DocsTitle>{page.data.title}</DocsTitle>
       <DocsDescription>{page.data.description}</DocsDescription>
       <DocsBody>
-        <MDX components={{ ...defaultMdxComponents }} />
+        <MDX components={{ ...defaultMdxComponents, LatexRenderer:
+          ({ formula }: { formula: string }) => <LatexRenderer formula={formula} />
+         }} />
       </DocsBody>
     </DocsPage>
   );

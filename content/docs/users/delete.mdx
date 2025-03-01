@@ -1,0 +1,22 @@
+---
+title: Delete a user
+description: You can delete a user using an admin token, given the user's ID
+---
+
+Running the following GraphQL query:
+
+```gql
+mutation {
+  deleteUserSuccess: deleteUser(id: $id)
+}
+```
+
+where $id is the user's ID to delete. On success this will return
+
+```json
+{
+  "data": {
+    "deleteUserSuccess": true
+  }
+}
+```

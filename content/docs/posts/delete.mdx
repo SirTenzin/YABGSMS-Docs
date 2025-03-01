@@ -1,0 +1,22 @@
+---
+title: Deleting a post
+description: Deleting a post with an admin token and its ID
+---
+
+Running the following GraphQL query: 
+
+```gql
+mutation DeletePost($deletePostId: Int!) {
+  deletePost(id: $deletePostId)
+}
+```
+
+with $deletePostId as a Post ID on success will return:
+
+```json
+{
+  "data": {
+    "deletePost": true
+  }
+}
+```

@@ -1,0 +1,34 @@
+---
+title: Editing a post's title
+description: You can edit a post's title using an admin token and its ID
+---
+
+You can update any post's title using the following GraphQL query:
+
+```gql
+mutation UpdatePostTitle($updatePostTitleId: Int!, $title: String!) {
+  updatePostTitle(id: $updatePostTitleId, title: $title) {
+    id, title, author, content {
+      type, data
+    }
+  }
+}
+```
+
+where `$updatePostTitleId` is the post's ID and `$title` is the new title. On success, this will return:
+
+```json
+{
+  "data": {
+    "updatePostTitle": {
+      "id": 2,
+      "title": "World Hello",
+      "author": 1,
+      "content": {
+        "type": "TEXT",
+        "data": "This is the first post on this social media app with a picture. How amazing is this?"
+      }
+    }
+  }
+}
+```

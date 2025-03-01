@@ -1,0 +1,37 @@
+---
+title: Creating, Reading, Updating and Deleting Posts
+description: How to perform simple CRUD actions on the Post database.
+---
+
+## Post structure
+
+Each post can have a Title, and a PostContent object. The PostContent object can either be of enum IMAGE or TEXT, and the data as a string of the text data or the image URL. It won't do much as this is just the backend but if you wanted to you could make it do something on the frontend lol. All posts have a unique ID and an author ID.
+
+<Callout title="Note">You can view how these IDs are generated at the [Identifiers](/docs/id) page</Callout>
+
+
+## Watch out!
+
+<Callout type="warn" title="Authenticating">You must be authorized to perform these actions. You can simple use the placeholder token by setting the `Authorization` header to `secret`</Callout>
+
+## Schema: 
+
+```gql
+type Post {
+    id: Int!
+    author: Int!
+    title: String!
+    content: PostContent!
+}
+
+type PostContent {
+    type: PostContentType!
+    data: String!
+}
+
+enum PostContentType {
+    IMAGE,
+    TEXT
+}
+```
+

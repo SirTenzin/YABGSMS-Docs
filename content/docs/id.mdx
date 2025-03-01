@@ -1,0 +1,12 @@
+---
+title: Identifiers
+description: The identifiers used in the database
+---
+
+## Fun Maths
+
+The database has many structures, but they all will typically have an "id" value. This is a unique identifier for each object in the database. The ID is generated using the function:
+
+<LatexRenderer formula="\Huge \lfloor e^{X} \cdot 9999 \rfloor \text{ where } X \sim U(0,1)" />
+
+or in other words - the nearest integer value of e raised to a random decimal between 0 and 1 multiplied by 9,999. Basically just generates a random ID. This is used to uniquely identify each object in the database.
