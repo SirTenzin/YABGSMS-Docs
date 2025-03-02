@@ -1,5 +1,3 @@
 # YABGSMSD: Yet Another Basic GraphQl Social Media Server Documentation
 
-Documentation using Fumadocs for [YABGSMS](https://github.com/SirTenzin/YABGSMS)
-
-You can visit the docs [here]()
+Documentation using Fumadocs for [YABGSMS](https://github.com/SirTenzin/YABGSMS). You can visit the docs [here](https://yabgsms-docs.tgca211859.workers.dev/docs).
